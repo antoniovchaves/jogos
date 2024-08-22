@@ -1,0 +1,76 @@
+import random
+
+words = [
+    "amarelo",
+    "cachorro",
+    "relógio",
+    "fumaça",
+    "espelho",
+    "folha",
+    "livro",
+    "chave",
+    "anel",
+    "maracujá",
+    "carro",
+    "floresta",
+    "computador",
+    "pintura",
+    "ventilador",
+    "tigre",
+    "telefone",
+    "música",
+    "escada",
+    "vela",
+    "bola",
+    "viagem",
+    "notebook",
+    "guarda-chuva",
+    "praia",
+    "caneta",
+    "gato",
+    "jardim",
+    "ônibus",
+    "chocolate",
+    "fruta",
+    "janela",
+    "parada",
+    "tênis",
+    "mesa",
+    "lâmpada",
+    "escova",
+    "planeta",
+    "gravatinha",
+    "pizza",
+    "bicicleta",
+    "computador",
+    "chaveiro",
+    "quadros",
+    "cesta",
+    "cachoeira",
+    "camisa",
+    "azul",
+    "tela",
+    "estrela",
+    "cachimbo",
+    "espada",
+    "brisa",
+    "festa",
+    "corpo",
+    "sino",
+    "pássaro",
+    "almoço",
+    "folclore",
+    "creme",
+    "abacaxi",
+    "sonho",
+    "prato"
+]
+
+
+def generate_mimic_challenge():
+    n_words = random.randint(2,4)
+    l_words = random.sample(range(len(words)), n_words)
+    final = ""
+    for word in l_words:
+        final += f"{word} "
+    return final
