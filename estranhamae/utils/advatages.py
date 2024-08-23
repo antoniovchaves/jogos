@@ -91,5 +91,5 @@ advantages = [
 ]
 
 def get_random_advantage():
-    index = random.randint(0, len(advantages))
+    index = random.randint(0, len(advantages)-1)
     return advantages[index]

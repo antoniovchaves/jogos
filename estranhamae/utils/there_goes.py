@@ -1,4 +1,5 @@
 there_goes = {
+    "0":"""AH CANSARAM DO TAPÃO DOS CRIA FIOS DA TRUTA DO CARAIO TOMA NUCÓ""",
     "1" : """Jogo Batata Quente com timer de 15s.
     
                 O jogo será jogado de pé em um espaço que não seja possível quebrar nada. 

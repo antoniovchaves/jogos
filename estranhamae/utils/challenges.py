@@ -150,7 +150,7 @@ challenges = [
     "Crie uma história curta com um tema de fantasia.",
 ]
 
-def choose_challenges(player):
+def choose_challenges(player, current_player):
     c_i = random.sample(range(len(challenges)), 2)
     print("Seus desafios são:")
     for i in c_i:
@@ -159,7 +159,8 @@ def choose_challenges(player):
     print(f"Sua recompensa será: \n{advantage}")
     answer = input("Realizou os deafios? (s/n)")
     if answer == "s":
-        player.advantages += [advantage]
+        player.advantages.append(advantage)
+        current_player.advantages.append(advantage)
     else:
         print(":((")
     

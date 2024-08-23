@@ -7,12 +7,14 @@ class Player:
         self.name = name
         self.online = online
         self.mae = self._assign_mae(numero_carta) 
+        self.mae_number = -1
         self.fichas = 15
         self.cartas = 3
         self.abilities = self._assign_abilities()
         self.rules = []
-        self.exchange_multiplier = 1 # 10 fichas dividido por isso é igual a quantas cartas serão recebidas
+        self.exchange_multiplier = 10 # 10 fichas dividido por isso é igual a quantas cartas serão recebidas
         self.advantages = []
+
 
     def _assign_abilities(self):
         # Atribui duas habilidades aleatórias ao jogador usando a função do ability.py
@@ -33,8 +35,14 @@ class Player:
             "online": self.online,
             "mae": self.mae,
             "abilities": self.abilities,
+            "exchange": self.exchange_multiplier
         }
         
+    def reveal_secret_info(self):
+        return {
+            "mae_number": self.mae_number,
+            "secret_ability": self.abilities
+        }
 
     def take_turn(self):
         """Realiza as ações disponíveis no turno do jogador"""
