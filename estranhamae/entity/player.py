@@ -27,7 +27,7 @@ class Player:
         advantages = f"Vantagens:\n{string_advantages}"
 
         player_information = f"{name}\n{mae}\n{abilitiy}\n{exchange}\n"
-        
+
         if string_advantages != "":
             player_information += f"{advantages}\n"
 
@@ -49,15 +49,6 @@ class Player:
 
         return final
 
-
-    def _assign_abilities(self):
-        # Atribui duas habilidades aleatórias ao jogador usando a função do ability.py
-        abilities = choose_abilities()
-        return {
-            "revealed": abilities[0],  # Habilidade revelada para todos
-            "secret": abilities[1]  # Habilidade secreta, apenas o jogador sabe
-        }
-    
     def _assign_mae(self, numero_carta):
         sua_mae = choose_mae(numero_carta)
         return sua_mae
