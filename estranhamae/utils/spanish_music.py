@@ -16,6 +16,7 @@ spanish_musics = [
     "Pica Pica - La Banda del Capitán Canalla: Uma música com um ritmo acelerado e letras cômicas.",
     "Chicle de Amor - Aventura: Uma canção que mistura romance e humor de forma leve.",
     "Los Limones - El Canto del Loco: Uma música divertida sobre situações absurdas e engraçadas.",
+    "A mí me gustan las hamburguesas - Los Piratas: Essa música é clássica, ouvi tanto essa porra."
 ]
 
 def choose_random_spanish_music():

@@ -70,7 +70,4 @@ words = [
 def generate_mimic_challenge():
     n_words = random.randint(2,4)
     l_words = random.sample(range(len(words)), n_words)
-    final = ""
-    for word in l_words:
-        final += f"{word} "
-    return final
+    return l_words

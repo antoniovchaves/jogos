@@ -91,13 +91,13 @@ def handle_advantages(player):
     else:
         input("Sem vantagens disponíveis...")
     
-def handle_there_goes(players):
+def handle_there_goes():
     input("É HORA DO LÁ VAI O TAPÃO!!!!\n\nO vencedor desse jogo ganha 2 fichas e o perdedor bebe um shot a escolha do início da partida.\n\nO objetivo desta brincadeira é para seleção de um segundo minigame.\n\n:))\n\n")
     chosen_game = "-1"
     while chosen_game not in validator.validate_chosen_game:
         chosen_game = input("Qual foi o jogo selecionado? (1-10 e JQK)")
     
-    print(there_goes.there_goes[chosen_game])
+    there_goes.select_there_goes_game(chosen_game)
 
     if chosen_game != "0":
         input("Esperando resultado...")
@@ -163,7 +163,7 @@ def main():
     # Passo 3: Loop principal do jogo
     while not game_over(players):
         if current_people_turn_count in surprise_there_goes:
-            handle_there_goes(players)
+            handle_there_goes()
         current_player = next_player_in_queue(players)
         display_turn_info(current_player, rule_price)
         passed = False

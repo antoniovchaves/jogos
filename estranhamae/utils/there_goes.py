@@ -1,3 +1,5 @@
+from .words import generate_mimic_challenge
+
 there_goes = {
     "0":"""AH CANSARAM DO TAPÃO DOS CRIA FIOS DA TRUTA DO CARAIO TOMA NUCÓ""",
     "1" : """Jogo Batata Quente com timer de 15s.
@@ -88,3 +90,12 @@ there_goes = {
                 
                 Boa sorte!!"""
 }
+
+def select_there_goes_game(card):
+    input(there_goes[card])
+    if card == "Q":
+        l_mimic = generate_mimic_challenge()
+        print("Mostre essa tela apenas para quem fará a mimica!\n\nDeve ser jogado até todas as palavras serem acertadas!!!")
+        input()
+        for i, mimic in enumerate(l_mimic):
+            input(f"{i + 1} - {mimic}")

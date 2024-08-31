@@ -84,10 +84,10 @@ advantages = [
     "CARLOS Y TU ABUELA - Escolha 2 jogadores para representarem uma avó e um galanteador mexicano na tentativa de convencer a avó para lhe dar algum dinheiro (dura o jogo todo até ser feita a transferência de pelo menos 2 cartas).",
     "CHING CHONG - prenda os olhos de outro jogador com durex para que fique 'Ching Chong' por 3 rodadas.",
     "CHING CHONG - prenda os olhos de outro jogador com durex para que fique 'Ching Chong' por 3 rodadas.",
-    "Agachadinha dos cria - a cada 5 segundos na posição de cócoras, ganhe 1 ficha (até 1 minuto = 15 fichas)",
-    "Agachadinha dos cria - a cada 5 segundos na posição de cócoras, ganhe 1 ficha (até 1 minuto = 15 fichas)",
-    "Agachadinha dos cria - a cada 5 segundos na posição de cócoras, ganhe 1 ficha (até 1 minuto = 15 fichas)",
-    "Agachadinha dos cria - a cada 5 segundos na posição de cócoras, ganhe 1 ficha (até 1 minuto = 15 fichas)",
+    "Agachadinha dos cria - a cada 4 segundos na posição de cócoras, ganhe 1 ficha (até 1 minuto = 15 fichas)",
+    "Agachadinha dos cria - a cada 4 segundos na posição de cócoras, ganhe 1 ficha (até 1 minuto = 15 fichas)",
+    "Agachadinha dos cria - a cada 4 segundos na posição de cócoras, ganhe 1 ficha (até 1 minuto = 15 fichas)",
+    "Agachadinha dos cria - a cada 4 segundos na posição de cócoras, ganhe 1 ficha (até 1 minuto = 15 fichas)",
 ]
 
 def get_random_advantage():

@@ -157,7 +157,7 @@ def choose_challenges(player, current_player):
         print(challenges[i])
     advantage = get_random_advantage()
     print(f"Sua recompensa será: \n{advantage}")
-    answer = input("Realizou os deafios? (s/n)")
+    answer = input("Realizou os deafios? (s/n) ")
     if answer == "s":
         player.advantages.append(advantage)
         current_player.advantages.append(advantage)
