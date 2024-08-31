@@ -25,11 +25,13 @@ class Player:
         abilitiy = f"Habilidade Revelada: {self.abilities['revealed'][0]} - {self.abilities['revealed'][1]}\n"
         exchange = f"Valor de troca: 1 carta te dá {self.exchange_multiplier} fichas\n"
         advantages = f"Vantagens:\n{string_advantages}"
-        final = f"{name}\n{mae}\n{abilitiy}\n{exchange}\n"
-        if string_advantages != "":
-            final += f"{advantages}\n"
 
-        return final
+        player_information = f"{name}\n{mae}\n{abilitiy}\n{exchange}\n"
+        
+        if string_advantages != "":
+            player_information += f"{advantages}\n"
+
+        return player_information
 
     def __repr__(self):
         string_advantages = ""

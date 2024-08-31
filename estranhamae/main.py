@@ -145,9 +145,11 @@ def clear_terminal():
     """Função para limpar o terminal (simplesmente imprime várias linhas em branco)"""
     print("\n" * 100)
 
-def game_over(players):
+def game_over(current_people_turn_count, game_size):
     """Função para verificar se o jogo acabou (Placeholder)"""
     # Adicionar lógica do fim de jogo, por exemplo, quando um jogador ganha ou atinge um critério específico
+    if current_people_turn_count >= game_size:
+        return True
     return False
 
 def main():
@@ -158,12 +160,15 @@ def main():
     distribute_mothers(players)
     distribute_abilities(players)
 
-    surprise_there_goes = random.sample(range(len(players), 20*len(players)), 6)
+    n_players = len(players)
+    game_size = int(input("Quantas rodadas querem jogar???") or "20") * n_players 
+    random_there_goes_turns = int(game_size * 0.4)
+    surprise_there_goes = random.sample(range(n_players, game_size), random_there_goes_turns)
     current_people_turn_count = 0
     rule_price = 3
 
     # Passo 3: Loop principal do jogo
-    while not game_over(players):
+    while not game_over(current_people_turn_count, game_size):
         if current_people_turn_count in surprise_there_goes:
             handle_there_goes()
         current_player = next_player_in_queue(players)
