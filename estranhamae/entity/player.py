@@ -10,10 +10,42 @@ class Player:
         self.mae_number = -1
         self.fichas = 15
         self.cartas = 3
-        self.abilities = self._assign_abilities()
+        self.abilities = {}
         self.rules = []
         self.exchange_multiplier = 10 # 10 fichas dividido por isso é igual a quantas cartas serão recebidas
         self.advantages = []
+
+    def __str__(self):
+        string_advantages = ""
+        for advantage in self.advantages:
+            string_advantages += f"- {advantage}\n"
+
+        name = f"Nome: {self.name}\n"
+        mae  = f"Mãe: {self.mae}\n"
+        abilitiy = f"Habilidade Revelada: {self.abilities['revealed'][0]} - {self.abilities['revealed'][1]}\n"
+        exchange = f"Valor de troca: 1 carta te dá {self.exchange_multiplier} fichas\n"
+        advantages = f"Vantagens:\n{string_advantages}"
+        final = f"{name}\n{mae}\n{abilitiy}\n{exchange}\n"
+        if string_advantages != "":
+            final += f"{advantages}\n"
+
+        return final
+
+    def __repr__(self):
+        string_advantages = ""
+        for advantage in self.advantages:
+            string_advantages += f"- {advantage}\n"
+
+        name = f"Nome: {self.name}\n"
+        mae  = f"Mãe: {self.mae}\n"
+        abilitiy = f"Habilidade Revelada: {self.abilities['revealed'][0]} - {self.abilities['revealed'][1]}\n"
+        exchange = f"Valor de troca: 1 carta te dá {self.exchange_multiplier} fichas\n"
+        advantages = f"Vantagens:\n{string_advantages}"
+        final = f"{name}\n{mae}\n{abilitiy}\n{exchange}\n"
+        if string_advantages != "":
+            final += f"{advantages}\n"
+
+        return final
 
 
     def _assign_abilities(self):
@@ -35,7 +67,8 @@ class Player:
             "online": self.online,
             "mae": self.mae,
             "abilities": self.abilities,
-            "exchange": self.exchange_multiplier
+            "exchange": self.exchange_multiplier,
+            "advantages": self.advantages,
         }
         
     def reveal_secret_info(self):

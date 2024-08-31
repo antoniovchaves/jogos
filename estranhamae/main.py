@@ -51,11 +51,7 @@ def get_player_action():
 
 def show_player_info(player):
     """Função para mostrar as informações do jogador"""
-    info = player.reveal_info()
-    print(f"Nome: {info['name']}\n")
-    print(f"Mãe: {info['mae']}\n")
-    print(f"Habilidade Revelada: {info['abilities'][0][0]} - {info['abilities'][0][1]}\n")
-    print(f"Valor de troca: 1 carta te dá {info['exchange']} fichas")
+    print(player)
     input("Aperte Enter para continuar...")
 
 def show_secret_player_info(player):
@@ -71,14 +67,15 @@ def handle_rules(players):
     """Função para realizar a criação de regra ('REGRINHA NOVA, CHAMA')"""
     # Exemplo básico de troca de mães com outro jogador aleatório
     new_rule = input("Insira uma nova regra: ")
-    for player in players:
-        print(f"- {player.name}")
-    target = input("Insira nome do jogador alvo: ")
-    turns = random.randint(1,3)
-    for player in players:
-        if target == player.name:
-            player.rules.append([new_rule, turns])
-    print(f"{target} vai sofrer por {turns} rodadas")
+    if new_rule != "0":
+        for player in players:
+            print(f"- {player.name}")
+        target = input("Insira nome do jogador alvo: ")
+        turns = random.randint(1,3)
+        for player in players:
+            if target == player.name:
+                player.rules.append([new_rule, turns])
+        print(f"{target} vai sofrer por {turns} rodadas")
     input("Aperte Enter para continuar...")
 
 def handle_advantages(player):
@@ -87,7 +84,8 @@ def handle_advantages(player):
         for i, advantage in enumerate(player.advantages):
             print(f"{i + 1} - {advantage}")
         chosen_advantage = int(input("Escolha a vantagem a ser utilizada: ") or "-1")
-        player.advantages.pop(chosen_advantage-1)
+        if chosen_advantage > 0:
+            player.advantages.pop(chosen_advantage-1)
     else:
         input("Sem vantagens disponíveis...")
     
@@ -101,8 +99,12 @@ def handle_there_goes():
 
     if chosen_game != "0":
         input("Esperando resultado...")
-        music = spanish_music.choose_random_spanish_music()
-        input(f"O perdedor deve receber um bigode num lugar no corpo desenhado com caneta. \nQuem recebeu o terceiro bigode, deve fazer uma dança na dança mais espanhol quanto possível para a música:\n\n{music}")
+
+        print("O perdedor deve receber um bigode num lugar no corpo desenhado com caneta. \n")
+        answer = input("Há alguém com o 3o bigode desenhado? (s/n) ")
+        if answer == "s":
+            music = spanish_music.choose_random_spanish_music()
+            input(f"\n\nQuem recebeu o terceiro bigode, deve fazer uma dança na dança mais espanhol quanto possível para a música:\n\n{music}")
     
 def handle_coin_in(current_player, players):
     coin_in = input("Jogue uma ficha no copo do cria!! Acertou??? (s/n)")
@@ -158,7 +160,7 @@ def main():
 
     surprise_there_goes = random.sample(range(len(players), 20*len(players)), 6)
     current_people_turn_count = 0
-    rule_price = 5
+    rule_price = 3
 
     # Passo 3: Loop principal do jogo
     while not game_over(players):

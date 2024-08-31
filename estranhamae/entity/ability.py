@@ -38,6 +38,12 @@ abilities = {
 def choose_abilities():
     selected = random.sample(list(abilities.items()), 2)
     # Remove as habilidades escolhidas do dicionário principal
-    for ability in selected:
+    formation = {}
+
+    for i, ability in enumerate(selected):
+        if i == 0:
+            formation["revealed"] = ability
+        if i == 1:
+            formation["secret"] = ability
         del abilities[ability[0]]
-    return selected
+    return formation
