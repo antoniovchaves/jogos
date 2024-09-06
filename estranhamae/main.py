@@ -47,7 +47,7 @@ def display_turn_info(player, price=5):
     print(words.convert_to_ascii_string(f"É a vez de {player.name}."))
     print("\n\n\n")
     display_remaining_rule_time(player)
-    print(f"Opções disponíveis: \n- minhas informações (1)\n- criar uma regra, custa {price} (2)\n- usar vantagem (3)\n- minigame de apostas (4)\n- passar a vez (5)")
+    print(f"Opções disponíveis: \n- minhas informações (1)\n- criar uma regra, custa {price} (2)\n- usar vantagem (3)\n- minigame de apostas (4)\n- ovô pegar tua mãe (5)\n- passar a vez (6)")
 
 def get_player_action():
     """Função para obter a ação do jogador"""
@@ -64,6 +64,11 @@ def show_secret_player_info(player):
     print(f"Mãe: {info['mae_number']}\n")
     print(f"Habilidade Secreta: {info['secret_ability']['secret'][0]} - {info['secret_ability']['secret'][1]}\n")
     input("Aperte Enter para esconder essas informações...")
+
+def handle_mommy_steal():
+    print(words.convert_to_ascii_string("Tenta a sorte, batatinha"))
+    print("\n\n\n")
+    input("E ai? Pegou? ")
 
 def handle_rules(players):
     """Função para realizar a criação de regra ('REGRINHA NOVA, CHAMA')"""
@@ -138,6 +143,7 @@ def main():
     random_there_goes_turns = int(game_size * 0.4)
     surprise_there_goes = random.sample(range(n_players, game_size), random_there_goes_turns)
     current_people_turn_count = 0
+    turn_power = 2
     rule_price = 3
 
     # Passo 3: Loop principal do jogo
@@ -151,9 +157,10 @@ def main():
         current_player = next_player_in_queue(players)
         passed = False
         rule_created = False
+        count_turn_power = 0
 
         # Exibir opções para o jogador
-        while not passed:
+        while not passed or count_turn_power > 2:
             display_turn_info(current_player, rule_price)
             action = get_player_action()
             words.clear_terminal()
@@ -169,24 +176,32 @@ def main():
             # Cria uma nova regra direcionada para um jogador - pode ser para si mesmo
             elif (action == "criar regra" or action == "2" and not rule_created):
                 handle_rules(players)
+                count_turn_power += 1
                 rule_price += 1
                 rule_created = True
 
             # Exibe e faz com que o jogador use uma vantagem listada
             elif action == "usar vantagem" or action == "3":
                 advantages.handle_advantages(current_player)
+                count_turn_power += 1
 
             # Chama um minigame no Mario Party ou qualquer outra forma de entretenimento para 4 jogadores
             elif action == "minigame de apostas" or action == "4":
                 minigames.handle_minigame_bet(players)
+                count_turn_power += 1
+
+            elif (action == "ovô pegar tua mãe" or action == "5") and count_turn_power == 0:
+                handle_mommy_steal()
+                count_turn_power += 2
 
             # Passa a vez e regula o jogo de ficha em um copo
-            elif action == "passar a vez" or action == "5" or action == "":
-                handle_coin_in(current_player, players)
+            elif action == "passar a vez" or action == "6" or action == "":
                 pass_turn()
                 passed = True
 
             words.clear_terminal()
+        
+        handle_coin_in(current_player, players)
             
         # Aumenta contador de rodadas por pessoa
         current_people_turn_count += 1
