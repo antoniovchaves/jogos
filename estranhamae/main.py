@@ -190,6 +190,7 @@ def main():
                 minigames.handle_minigame_bet(players)
                 count_turn_power += 1
 
+            # Tenta pegar a mãe de alguém
             elif (action == "ovô pegar tua mãe" or action == "5") and count_turn_power == 0:
                 handle_mommy_steal()
                 count_turn_power += 2
