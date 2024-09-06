@@ -1,13 +1,16 @@
 import random
+
+from utils import words
+from utils import minigames
 from utils import there_goes
 from utils import challenges
-from utils import minigames
+from utils import advantages
 from utils import random_ways_to_make_fun_of_someone
-from estranhamae.utils import advantages
-from entity import ability
-from entity import mae
-from entity.player import Player
 
+from entity import mae
+from entity import ability
+
+from entity.player import Player
 
 def create_players():
     """Função para criar os jogadores e permitir nomeá-los"""
@@ -41,7 +44,8 @@ def next_player_in_queue(players):
 
 def display_turn_info(player, price=5):
     """Função para exibir de quem é a vez"""
-    print(f"É a vez de {player.name}.")
+    print(words.convert_to_ascii_string(f"É a vez de {player.name}."))
+    print("\n\n\n")
     display_remaining_rule_time(player)
     print(f"Opções disponíveis: \n- minhas informações (1)\n- criar uma regra, custa {price} (2)\n- usar vantagem (3)\n- minigame de apostas (4)\n- passar a vez (5)")
 
@@ -60,11 +64,11 @@ def show_secret_player_info(player):
     print(f"Mãe: {info['mae_number']}\n")
     print(f"Habilidade Secreta: {info['secret_ability']['secret'][0]} - {info['secret_ability']['secret'][1]}\n")
     input("Aperte Enter para esconder essas informações...")
-    clear_terminal()
-    display_turn_info(player)
 
 def handle_rules(players):
     """Função para realizar a criação de regra ('REGRINHA NOVA, CHAMA')"""
+    print(words.convert_to_ascii_string("Regrinha dos cria"))
+
     # Exemplo básico de troca de mães com outro jogador aleatório
     new_rule = input("Insira uma nova regra: ")
     if new_rule != "0":
@@ -79,6 +83,9 @@ def handle_rules(players):
     input("Aperte Enter para continuar...")
 
 def handle_coin_in(current_player, players):
+    print(words.convert_to_ascii_string("saideira da rodada"))
+    print("\n\n\n")
+
     coin_in = input("Jogue uma ficha no copo do cria!! Acertou??? (s/n)")
 
     if coin_in == "s":
@@ -109,10 +116,6 @@ def pass_turn():
     """Função para passar a vez"""
     print("Você passou a vez.")
     input("Aperte Enter para continuar...")
-
-def clear_terminal():
-    """Função para limpar o terminal (simplesmente imprime várias linhas em branco)"""
-    print("\n" * 100)
 
 def game_over(current_people_turn_count, game_size):
     """Função para verificar se o jogo acabou (Placeholder)"""
@@ -146,13 +149,14 @@ def main():
 
         # Inicia variáveis para a rodada atual
         current_player = next_player_in_queue(players)
-        display_turn_info(current_player, rule_price)
         passed = False
         rule_created = False
 
         # Exibir opções para o jogador
         while not passed:
+            display_turn_info(current_player, rule_price)
             action = get_player_action()
+            words.clear_terminal()
 
             # Mostra informações exclusivas para o jogador
             if action == "0":
@@ -182,10 +186,12 @@ def main():
                 pass_turn()
                 passed = True
 
+            words.clear_terminal()
+            
         # Aumenta contador de rodadas por pessoa
         current_people_turn_count += 1
         
-        clear_terminal()
+        words.clear_terminal()
 
 if __name__ == "__main__":
     main()

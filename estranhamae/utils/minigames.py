@@ -1,3 +1,5 @@
+from .words import convert_to_ascii_string
+
 def minigame_points(players, minigame_type):
     podium = {}
     total_coins = 0
@@ -20,7 +22,9 @@ def minigame_points(players, minigame_type):
         for player in players:            
             player.exchange_multiplier += int(multiplier * podium[player.name])
 
-
 def handle_minigame_bet(players):
+    print(convert_to_ascii_string("mlk, vamo de minigame"))
+    print("\n\n\n")
+
     minigame_type = input("Qual foi o tipo de minigame?\n- moedas (1)\n- cada um por si (2)\n- duplasquinha (3)\n- covardia 3 contra 1 (4)\nInsira aqui: ")
     minigame_points(players, minigame_type)

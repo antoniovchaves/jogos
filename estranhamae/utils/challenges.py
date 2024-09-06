@@ -1,5 +1,6 @@
 import random
 from .advantages import get_random_advantage
+from .words import convert_to_ascii_string
 
 challenges = [
     "Cante uma música sem se esquecer da letra.",
@@ -151,6 +152,8 @@ challenges = [
 ]
 
 def choose_challenges(player, current_player):
+    print(convert_to_ascii_string("Vou desafiar voce"))
+
     c_i = random.sample(range(len(challenges)), 2)
     print("Seus desafios são:")
     for i in c_i:
