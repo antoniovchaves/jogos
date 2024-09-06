@@ -1,4 +1,6 @@
 from .words import generate_mimic_challenge
+import validator
+import spanish_music
 
 there_goes = {
     "0":"""AH CANSARAM DO TAPÃO DOS CRIA FIOS DA TRUTA DO CARAIO TOMA NUCÓ""",
@@ -90,6 +92,33 @@ there_goes = {
                 
                 Boa sorte!!"""
 }
+
+def handle_there_goes():
+    print("""
+╔╗──╔══╗───╔╗╔╗╔══╗╔══╗───╔══╗───╔════╗╔══╗╔═══╗╔══╗╔══╗
+║║──║╔╗║───║║║║║╔╗║╚╗╔╝───║╔╗║───╚═╗╔═╝║╔╗║║╔═╗║║╔╗║║╔╗║
+║║──║╚╝║───║║║║║╚╝║─║║────║║║║─────║║──║╚╝║║╚═╝║║╚╝║║║║║
+║║──║╔╗║───║╚╝║║╔╗║─║║────║║║║─────║║──║╔╗║║╔══╝║╔╗║║║║║
+║╚═╗║║║║───╚╗╔╝║║║║╔╝╚╗───║╚╝║─────║║──║║║║║║───║║║║║╚╝║
+╚══╝╚╝╚╝────╚╝─╚╝╚╝╚══╝───╚══╝─────╚╝──╚╝╚╝╚╝───╚╝╚╝╚══╝
+""")
+
+    input("É HORA DO LÁ VAI O TAPÃO!!!!\n\nO vencedor desse jogo ganha 2 fichas e o perdedor bebe um shot a escolha do início da partida.\n\nO objetivo desta brincadeira é para seleção de um segundo minigame.\n\n:))\n\n")
+    chosen_game = "-1"
+    while chosen_game not in validator.validate_chosen_game:
+        chosen_game = input("Qual foi o jogo selecionado? (1-10 e JQK)")
+    
+    select_there_goes_game(chosen_game)
+
+    if chosen_game != "0":
+        input("Esperando resultado...")
+
+        print("O perdedor deve receber um bigode num lugar no corpo desenhado com caneta. \n")
+        answer = input("Há alguém com o 3o bigode desenhado? (s/n) ")
+        if answer == "s":
+            music = spanish_music.choose_random_spanish_music()
+            input(f"\n\nQuem recebeu o terceiro bigode, deve fazer uma dança na dança mais espanhol quanto possível para a música:\n\n{music}")
+    
 
 def select_there_goes_game(card):
     input(there_goes[card])

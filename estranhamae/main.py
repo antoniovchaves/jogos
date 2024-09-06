@@ -1,9 +1,9 @@
 import random
 from utils import there_goes
-from utils import spanish_music
 from utils import challenges
-from utils import validator
 from utils import minigames
+from utils import random_ways_to_make_fun_of_someone
+from estranhamae.utils import advantages
 from entity import ability
 from entity import mae
 from entity.player import Player
@@ -58,7 +58,7 @@ def show_secret_player_info(player):
     """Função para mostrar as informações do jogador"""
     info = player.reveal_secret_info()
     print(f"Mãe: {info['mae_number']}\n")
-    print(f"Habilidade Secreta: {info['secret_ability'][1][0]} - {info['secret_ability'][1][1]}\n")
+    print(f"Habilidade Secreta: {info['secret_ability']['secret'][0]} - {info['secret_ability']['secret'][1]}\n")
     input("Aperte Enter para esconder essas informações...")
     clear_terminal()
     display_turn_info(player)
@@ -78,34 +78,6 @@ def handle_rules(players):
         print(f"{target} vai sofrer por {turns} rodadas")
     input("Aperte Enter para continuar...")
 
-def handle_advantages(player):
-    """Função para realizar uso de vantagens"""
-    if len(player.advantages) > 0:
-        for i, advantage in enumerate(player.advantages):
-            print(f"{i + 1} - {advantage}")
-        chosen_advantage = int(input("Escolha a vantagem a ser utilizada: ") or "-1")
-        if chosen_advantage > 0:
-            player.advantages.pop(chosen_advantage-1)
-    else:
-        input("Sem vantagens disponíveis...")
-    
-def handle_there_goes():
-    input("É HORA DO LÁ VAI O TAPÃO!!!!\n\nO vencedor desse jogo ganha 2 fichas e o perdedor bebe um shot a escolha do início da partida.\n\nO objetivo desta brincadeira é para seleção de um segundo minigame.\n\n:))\n\n")
-    chosen_game = "-1"
-    while chosen_game not in validator.validate_chosen_game:
-        chosen_game = input("Qual foi o jogo selecionado? (1-10 e JQK)")
-    
-    there_goes.select_there_goes_game(chosen_game)
-
-    if chosen_game != "0":
-        input("Esperando resultado...")
-
-        print("O perdedor deve receber um bigode num lugar no corpo desenhado com caneta. \n")
-        answer = input("Há alguém com o 3o bigode desenhado? (s/n) ")
-        if answer == "s":
-            music = spanish_music.choose_random_spanish_music()
-            input(f"\n\nQuem recebeu o terceiro bigode, deve fazer uma dança na dança mais espanhol quanto possível para a música:\n\n{music}")
-    
 def handle_coin_in(current_player, players):
     coin_in = input("Jogue uma ficha no copo do cria!! Acertou??? (s/n)")
 
@@ -118,11 +90,8 @@ def handle_coin_in(current_player, players):
             if player.name == selected_player:
                 challenges.choose_challenges(player, current_player)
     else:
-        print("yolo, se fodeo...")
-    
-def handle_minigame_bet(players):
-    minigame_type = input("Qual foi o tipo de minigame?\n- moedas (1)\n- cada um por si (2)\n- duplasquinha (3)\n- covardia 3 contra 1 (4)\nInsira aqui: ")
-    minigames.minigame_points(players, minigame_type)
+        random_phrase = random_ways_to_make_fun_of_someone.choose_random_phrase()
+        print(random_phrase)
 
 def display_remaining_rule_time(player):
     rules = []
@@ -160,6 +129,7 @@ def main():
     distribute_mothers(players)
     distribute_abilities(players)
 
+    # Passo 2.5: Inicializador de variáveis necessárias
     n_players = len(players)
     game_size = int(input("Quantas rodadas querem jogar???") or "20") * n_players 
     random_there_goes_turns = int(game_size * 0.4)
@@ -169,32 +139,50 @@ def main():
 
     # Passo 3: Loop principal do jogo
     while not game_over(current_people_turn_count, game_size):
+
+        # Verifica se é uma rodada de Lá vai o Tapão
         if current_people_turn_count in surprise_there_goes:
-            handle_there_goes()
+            there_goes.handle_there_goes()
+
+        # Inicia variáveis para a rodada atual
         current_player = next_player_in_queue(players)
         display_turn_info(current_player, rule_price)
         passed = False
         rule_created = False
+
         # Exibir opções para o jogador
         while not passed:
             action = get_player_action()
+
+            # Mostra informações exclusivas para o jogador
             if action == "0":
                 show_secret_player_info(current_player)
+
+            # Exibe informações gerais do jogador
             elif action == "minhas informações" or action == "1":
                 show_player_info(current_player)
+
+            # Cria uma nova regra direcionada para um jogador - pode ser para si mesmo
             elif (action == "criar regra" or action == "2" and not rule_created):
                 handle_rules(players)
                 rule_price += 1
                 rule_created = True
+
+            # Exibe e faz com que o jogador use uma vantagem listada
             elif action == "usar vantagem" or action == "3":
-                handle_advantages(current_player)
+                advantages.handle_advantages(current_player)
+
+            # Chama um minigame no Mario Party ou qualquer outra forma de entretenimento para 4 jogadores
             elif action == "minigame de apostas" or action == "4":
-                handle_minigame_bet(players)
+                minigames.handle_minigame_bet(players)
+
+            # Passa a vez e regula o jogo de ficha em um copo
             elif action == "passar a vez" or action == "5" or action == "":
                 handle_coin_in(current_player, players)
                 pass_turn()
                 passed = True
 
+        # Aumenta contador de rodadas por pessoa
         current_people_turn_count += 1
         
         clear_terminal()

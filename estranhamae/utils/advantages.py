@@ -90,6 +90,18 @@ advantages = [
     "Agachadinha dos cria - a cada 4 segundos na posição de cócoras, ganhe 1 ficha (até 1 minuto = 15 fichas)",
 ]
 
+def handle_advantages(player):
+    """Função para realizar uso de vantagens"""
+    if len(player.advantages) > 0:
+        for i, advantage in enumerate(player.advantages):
+            print(f"{i + 1} - {advantage}")
+        chosen_advantage = int(input("Escolha a vantagem a ser utilizada: ") or "-1")
+        if chosen_advantage > 0:
+            player.advantages.pop(chosen_advantage-1)
+    else:
+        input("Sem vantagens disponíveis...")
+    
+
 def get_random_advantage():
     index = random.randint(0, len(advantages)-1)
     return advantages[index]

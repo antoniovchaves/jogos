@@ -1,5 +1,5 @@
 import random
-from .advatages import get_random_advantage
+from .advantages import get_random_advantage
 
 challenges = [
     "Cante uma música sem se esquecer da letra.",
