@@ -2,8 +2,6 @@ from .words import generate_mimic_challenge, convert_to_ascii_string
 from .validator import validate_chosen_game
 from .spanish_music import choose_random_spanish_music
 
-validate_chosen_game = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"]
-
 there_goes = {
     "0":"""AH CANSARAM DO TAPÃO DOS CRIA FIOS DA TRUTA DO CARAIO TOMA NUCÓ""",
     "1" : f"""

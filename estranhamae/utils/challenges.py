@@ -1,6 +1,7 @@
 import random
-from .advantages import get_random_advantage
+
 from .words import convert_to_ascii_string
+from .advantages import get_random_advantage
 
 challenges = [
     "Cante uma música sem se esquecer da letra.",
