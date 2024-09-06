@@ -1,4 +1,5 @@
 import random
+
 from .words import convert_to_ascii_string
 
 advantages = [
@@ -89,8 +90,37 @@ advantages = [
     "Agachadinha dos cria - a cada 4 segundos na posição de cócoras, ganhe 1 ficha (até 1 minuto = 15 fichas)",
     "Agachadinha dos cria - a cada 4 segundos na posição de cócoras, ganhe 1 ficha (até 1 minuto = 15 fichas)",
     "Agachadinha dos cria - a cada 4 segundos na posição de cócoras, ganhe 1 ficha (até 1 minuto = 15 fichas)",
+    "Escolha um jogador para falar uma frase bizarra ao pegar a sua mãe, ou você perderá 5 fichas.",
+    "Você pode exigir que um jogador cante uma música de ninar sempre que passar a vez durante 3 rodadas.",
+    "Ganhe uma carta adicional se vencer 2 minigames seguidos.",
+    "Troque todas as suas fichas por fichas de outro jogador escolhido aleatoriamente.",
+    "Reviva um minigame que já foi jogado, mas escolha outro jogador para enfrentá-lo.",
+    "Faça um jogador segurar uma colher na boca por 2 rodadas; se ele deixar cair, perca 3 fichas.",
+    "Escolha um jogador para rolar no chão como uma batata por 15 segundos, ou você perde uma carta.",
+    "Durante o próximo minigame, escolha um jogador para jogar com as mãos amarradas por uma rodada.",
+    "Cada vez que um jogador errar, você ganha uma ficha por zombar de forma criativa.",
+    "Ganhe o direito de pedir a outro jogador que desenhe uma mãe ridícula e use como a sua até o fim do jogo.",
+    "Se um jogador errar um lançamento no copo, você pode tomar 2 fichas dele.",
+    "Convide dois jogadores para uma 'batalha de caretas'; o perdedor lhe dá uma carta.",
+    "Exija que um jogador use óculos escuros enquanto joga um minigame, ou você perde 3 fichas.",
+    "Ao vencer um minigame, escolha um jogador para fazer uma dança esquisita por 10 segundos.",
+    "Escolha um jogador para falar 'eu amo minha mãe' cada vez que fizer uma jogada, ou ele perde uma carta.",
+    "Crie um desafio físico (ex: fazer flexões) para outro jogador. Se ele falhar, ganhe 3 fichas.",
+    "Invente uma história sobre como você encontrou sua mãe, e se os outros jogadores acreditarem, ganhe 2 fichas.",
+    "Troque uma carta por 10 fichas de outro jogador.",
+    "Desafie um jogador para um jogo de pedra, papel, tesoura. O vencedor ganha 5 fichas.",
+    "Escolha dois jogadores para se elogiarem mutuamente; o mais convincente ganha 1 carta de você.",
+    "Faça um jogador cantar o hino nacional toda vez que passar a vez por duas rodadas.",
+    "Desafie um jogador para uma rodada de rimas; quem perder, te dá 3 fichas.",
+    "Durante a próxima rodada, você pode imitar a voz de qualquer jogador e ganhar 2 fichas se eles rirem.",
+    "Ganhe uma carta se conseguir que dois jogadores se abracem no meio de um minigame.",
+    "Se alguém te oferecer algo durante o jogo (como uma troca), recuse sempre e ganhe 3 fichas.",
+    "Invente uma regra absurda para o jogo e se os outros seguirem por 3 rodadas, ganhe 1 carta.",
+    "Diga uma piada ruim; se ninguém rir, ganhe 2 fichas. Se rirem, perca 1 carta.",
+    "Escolha um jogador para fazer uma imitação de animal por 5 segundos, ou você perde 2 fichas.",
+    "Troque secretamente sua mãe com a de outro jogador, mas finja que nada aconteceu por 2 rodadas.",
+    "Ganhe 3 fichas se conseguir que alguém lhe faça uma massagem nas costas por 10 segundos."
 ]
-
 
 def handle_advantages(player):
     """Função para realizar uso de vantagens"""
@@ -104,7 +134,6 @@ def handle_advantages(player):
             player.advantages.pop(chosen_advantage-1)
     else:
         input("Sem vantagens disponíveis... vacilão... eu acreditei em você )));")
-
 
 def get_random_advantage():
     index = random.randint(0, len(advantages)-1)
